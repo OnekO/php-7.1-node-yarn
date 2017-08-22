@@ -26,7 +26,7 @@ RUN pecl install redis \
     && pecl install mongodb \
     && docker-php-ext-enable redis xdebug apcu mongodb
 
-RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
 RUN apt-get install -y nodejs
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
