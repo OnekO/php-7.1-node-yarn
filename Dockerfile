@@ -12,8 +12,11 @@ RUN apt-get update && apt-get install -y \
         wkhtmltopdf \
         xvfb \
         libssl-dev \
+        pkg-config \
+        zip \
+        unzip \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
-    && docker-php-ext-install -j$(nproc) pdo pdo_mysql \
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
 
@@ -23,8 +26,11 @@ RUN pecl install redis \
     && pecl install mongodb \
     && docker-php-ext-enable redis xdebug apcu mongodb
 
+RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+RUN apt-get install -y nodejs
+
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install git yarn pkg-config zip unzip -yqq
+RUN apt-get update && apt-get install git yarn -yqq
 
 RUN echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
