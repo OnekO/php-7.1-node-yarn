@@ -4,6 +4,7 @@ FROM php:7.1.0-fpm
 RUN apt-get update && apt-get install -y \
         apt-transport-https \
         apt-utils \
+        openssh-client \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
@@ -33,6 +34,5 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install git yarn -yqq
 
-RUN echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini
 
-RUN curl -sS https://getcomposer.org/installer | php
+RUN curl -sS https://getcomposer.org/installer | php --install-dir=/usr/local/bin --filename=composer
