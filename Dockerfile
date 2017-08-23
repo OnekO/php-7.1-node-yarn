@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
         zip \
         unzip \
         git \
+        default-jre \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
     && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -38,3 +39,6 @@ RUN apt-get update && apt-get install yarn -yqq
 
 RUN wget https://getcomposer.org/installer
 RUN php installer --install-dir=/usr/local/bin --filename=composer && composer global require hirak/prestissimo
+
+RUN wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip \
+    && unzip sonar-scanner-cli-3.0.3.778-linux.zip && mv sonar-scanner-cli-3.0.3.778-linux /opt/
