@@ -2,6 +2,7 @@ FROM php:7.1.0-fpm
 
 # Install selected extensions and other stuff
 RUN apt-get update && apt-get install -y \
+        wget
         apt-transport-https \
         apt-utils \
         openssh-client \
