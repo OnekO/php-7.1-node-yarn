@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
         pkg-config \
         zip \
         unzip \
+        git \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
     && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
@@ -33,7 +34,7 @@ RUN apt-get install -y nodejs
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-RUN apt-get update && apt-get install git yarn -yqq
+RUN apt-get update && apt-get install yarn -yqq
 
-RUN 'wget https://getcomposer.org/installer'
+RUN wget https://getcomposer.org/installer
 RUN php installer --install-dir=/usr/local/bin --filename=composer
