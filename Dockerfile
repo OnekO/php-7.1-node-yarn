@@ -37,4 +37,4 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update && apt-get install yarn -yqq
 
 RUN wget https://getcomposer.org/installer
-RUN php installer --install-dir=/usr/local/bin --filename=composer
+RUN php installer --install-dir=/usr/local/bin --filename=composer && composer global require hirak/prestissimo
