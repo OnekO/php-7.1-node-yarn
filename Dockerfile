@@ -1,4 +1,4 @@
-FROM php:7.1.0-fpm
+FROM php:7.1-fpm
 
 # Install selected extensions and other stuff
 RUN apt-get update && apt-get install -y \
@@ -23,6 +23,10 @@ RUN apt-get update && apt-get install -y \
         webp \
         libwebp-dev \
         libxpm-dev \
+        imagemagick \
+        libtool \
+        libmagickwand-dev \
+        libmagickcore-dev \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
     && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip \
     && docker-php-ext-configure gd \
@@ -34,10 +38,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) exif gd
 
 RUN pecl install redis \
+    && pecl install imagick-3.4.3 \
     && pecl install xdebug \
     && pecl install apcu \
     && pecl install mongodb \
-    && docker-php-ext-enable redis xdebug apcu mongodb
+    && docker-php-ext-enable redis xdebug apcu mongodb imagick
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs
