@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
         libtool \
         libmagickwand-dev \
         libmagickcore-dev \
+        libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ \
     && docker-php-ext-install -j$(nproc) iconv mcrypt \
     && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip \
     && docker-php-ext-configure gd \
