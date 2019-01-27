@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
         openssh-client \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libmcrypt-dev \
         libpng-dev \
         libxml2-dev \
         wkhtmltopdf \
@@ -27,7 +26,7 @@ RUN apt-get update && apt-get install -y \
         libmagickwand-dev \
         libmagickcore-dev \
         libcairo2-dev libjpeg-dev libpango1.0-dev libgif-dev build-essential g++ \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt \
+    && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-install -j$(nproc) pdo pdo_mysql zip \
     && docker-php-ext-configure gd \
           --with-freetype-dir=/usr/include/ \
