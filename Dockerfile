@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -y \
         zip \
         unzip \
         git \
-        default-jre \
         libjpeg62-turbo-dev \
         webp \
         libwebp-dev \
@@ -45,7 +44,7 @@ RUN pecl install redis \
     && pecl install mongodb \
     && docker-php-ext-enable redis xdebug apcu mongodb imagick
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
 RUN apt-get install -y nodejs
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
