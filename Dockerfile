@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.3-fpm
 
 # Install selected extensions and other stuff
 RUN apt-get update && apt-get install -y \
@@ -54,6 +54,3 @@ RUN apt-get update && apt-get install yarn -yqq
 
 RUN wget https://getcomposer.org/installer
 RUN php installer --install-dir=/usr/local/bin --filename=composer && composer global require hirak/prestissimo
-
-RUN wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip \
-    && unzip sonar-scanner-cli-3.0.3.778-linux.zip && mv sonar-scanner-3.0.3.778-linux/ /opt/sonar-scanner
