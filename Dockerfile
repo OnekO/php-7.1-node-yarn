@@ -21,6 +21,8 @@ RUN apk add --no-cache --update \
         libtool \
 	imagemagick \
         imagemagick-dev \
+	nodejs \
+	yarn \
         cairo-dev jpeg-dev pango-dev giflib-dev build-base autoconf && \
 
 	docker-php-ext-install -j$(nproc) iconv \
@@ -40,20 +42,5 @@ RUN pecl install redis \
     && pecl install mongodb \
     && docker-php-ext-enable redis apcu mongodb imagick xdebug
 
-#RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
-#RUN apt-get install -y nodejs
-
-#RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-#RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-#RUN apt-get update && apt-get install yarn -yqq
-
 RUN wget https://getcomposer.org/installer
 RUN php installer --install-dir=/usr/local/bin --filename=composer && composer global require hirak/prestissimo
-
-RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-        apk --no-cache --update --available upgrade && \
-        apk add --no-cache --update \
-		nodejs \
-		yarn \
-		wkhtmltopdf@community	
-
